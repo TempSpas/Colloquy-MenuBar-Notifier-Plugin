@@ -21,7 +21,7 @@ def load( scriptFilePath ):
     # create a new NSStatusItem
     thickness = NSStatusBar.systemStatusBar().thickness()
     statusItem = NSStatusBar.systemStatusBar().statusItemWithLength_(thickness)
-    statusItem.setToolTip_("Colloquy Status")
+    statusItem.setToolTip_("No messages waiting.")
     statusItem.setHighlightMode_(1)
 
     bundle = NSBundle.mainBundle()
@@ -47,6 +47,7 @@ def contextualMenuItems( item, view ):
 
     if inactiveIcon != 0 and myApp.isActive():
         statusItem.setImage_(inactiveIcon)
+        statusItem.setToolTip_("No messages waiting.")
 
 # return an array of toolbar item identifier strings that can be associated with 'view'
 def toolbarItemIdentifiers( view ):
@@ -95,6 +96,7 @@ def performNotification( identifier, context, preferences ):
     
     if identifier in active_on and activeIcon != 0:
         statusItem.setImage_(activeIcon)
+        statusItem.setToolTip_("New messages available.")
 
 # called when an unhandled URL scheme is clicked in 'view'
 def handleClickedLink( url, view ):
